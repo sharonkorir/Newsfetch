@@ -2,6 +2,8 @@ from app import app
 import urllib.request, json
 from .models import news_articles, news_sources
 
+Source = news_sources.Source
+
 #get api key
 api_key = app.config['NEWS_API_KEY']
 
@@ -28,4 +30,21 @@ def get_sources(source):
 
 def process_results(source_list):
     '''
+    processes the source results and transforms them to a list of objects
+    
+    Args: 
+        source_list: a list of dictionaries that contain news source details
+    Returns:
+        source_results: a list of news source objects 
     '''
+    source_results = []
+    for source_item in source_list:
+        id = source_item.get('id')
+        name = source_item.get('name')
+        description = source_item.get('description')
+        url = source_item.get('url')
+
+        source_object = Source(id, name, description, url)
+        source_results.append(source_object)
+
+    return source_results
