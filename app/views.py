@@ -9,4 +9,5 @@ def index():
     view root page function that returns index page
     '''
 
-    return render_template('index.html')
+    title = 'Newsfetch - All your news in one place'
+    return render_template('index.html', title = title)
