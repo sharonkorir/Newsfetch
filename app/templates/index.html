@@ -9,6 +9,12 @@
       {% endif %}
     </head>
     <body>
-      <p>testing Newsfetch</p>
+      <!-- News sources section -->
+      <h3> Browse News Sources </h3>
+      <ul>
+         {% for news_sources in source %}
+             <li>{{ news_sources.name }}</li>
+         {% endfor %}
+     </ul>
     </body>
 </html>
