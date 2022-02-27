@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+{% block content %}
+    
+  <h3> Found {{ articles| count }} matches </h3>
+  <hr>
+  <ul>
+    {{ macro.displayArticleList(articles)}}
+  </ul>
+{% endblock %}

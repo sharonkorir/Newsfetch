@@ -1,7 +1,7 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 from app import app
 from app.models import news_sources, news_articles
-from .request import get_sources, get_articles
+from .request import get_sources, get_articles, search_article
 
 #views
 @app.route('/')
@@ -17,7 +17,12 @@ def index():
 
     title = 'Newsfetch - All your news in one place'
 
-    return render_template('index.html', title = title, source = news_sources)
+    search_article = request.args.get('article_query')
+
+    if search_article:
+        return redirect(url_for('search', article_title = search_article))
+    else:
+        return render_template('index.html', title = title, source = news_sources)
 
 
 @app.route('/<string:id>')
@@ -35,16 +40,15 @@ def article(id):
 
     return render_template('articles.html', articles = news_articles, source = id)
 
-#@app.route('/<string:id>/articles')
-#def article(id):
+@app.route('/search/<article_title>')
+def search(article_title):
 
     '''
-    View article details page function that returns article details
+    View function to display search results
     '''
-    news_articles = get_article_details(id)
-    id = id
-    #title = f'{news_articles.title}'
-    print("testing article objects", id)
-  
 
-    return render_template('articles.html', article = news_articles, source = id)
+    article_title_list = article_title.split(" ")
+    article_name_format = "+".join(article_title_list)
+    searched_articles = search_article(article_name_format)
+    title = f'search results for {article_title}'
+    return render_template('search.html', articles = searched_articles)

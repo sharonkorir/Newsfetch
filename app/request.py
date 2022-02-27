@@ -90,23 +90,16 @@ def process_articles_results(article_list):
     #print("test", article_item)
     return article_results
 
-#def get_article_details(id):
-    get_article_details_url = 'https://newsapi.org/v2/top-headlines?sources={}&pageSize=10&apiKey={}'.format(id, api_key)
-    with urllib.request.urlopen(get_article_details_url) as url:
+def search_article(article_title):
+    search_article_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(article_title, api_key)
+    with urllib.request.urlopen(search_article_url) as url:
         article_data = url.read()
         article_data_response = json.loads(article_data)
 
-        article_object = None
+        search_article_results = None
 
-        if article_data_response:
-            source = article_data_response.get('source')
-            title = article_data_response.get('title')
-            image = article_data_response.get('urlToImage')
-            description = article_data_response.get('description')
-            article_url = article_data_response.get('url')
-            time = article_data_response.get('publishedAt')
-
-        article_object = Article(source, title, description, article_url, image, time)
-        print("test article", article_object.description)
+        if article_data_response['articles']:
+            search_article_list = article_data_response['articles']
+            search_article_results = process_articles_results(search_article_list)
             
-    return article_object
+    return search_article_results
