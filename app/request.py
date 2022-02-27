@@ -92,22 +92,21 @@ def process_articles_results(article_list):
     return article_results
 
 def get_article_details(id):
-    get_articles_url = 'https://newsapi.org/v2/top-headlines?sources={}&pageSize=10&apiKey={}'.format(id, api_key)
-    with urllib.request.urlopen(get_articles_url) as url:
+    get_article_details_url = 'https://newsapi.org/v2/top-headlines?sources={}&pageSize=10&apiKey={}'.format(id, api_key)
+    with urllib.request.urlopen(get_article_details_url) as url:
         article_data = url.read()
         article_data_response = json.loads(article_data)
 
         article_object = None
 
-        if article_data_response['articles']:
+        if article_data_response:
             title = article_data_response.get('title')
             image = article_data_response.get('urlToImage')
             description = article_data_response.get('description')
-            url = article_data_response.get('url')
+            article_url = article_data_response.get('url')
             time = article_data_response.get('publishedAt')
-            id = article_data_response.get('source.id')
 
-        article_object = Article(id, title, description, url, image, time)
+        article_object = Article(title, description, article_url, image, time)
         print("test article", article_object.title)
             
     return article_object
