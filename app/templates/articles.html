@@ -1,17 +1,15 @@
+
+{% extends 'base.html' %}
 {% import 'macros.html' as macro %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      <meta charset="UTF-8">
-    </head>
-    <body>
-      <!-- News sources section -->
-      <h3> Trending headlines for {{source}} </h3>
-      <ul>
-          {{ macro.displayArticleList(article)}}
-      </ul>
-    </body>
-</html>
+{% block content %}
+
+  <!-- Article details section -->
+  <h3> Trending headlines for {{source}} </h3>
+  <ul>
+      {{ macro.displaySourceList(article)}}
+  </ul>
+
+{% endblock %}
 
 
