@@ -1,3 +1,14 @@
+class Source:
+    '''
+    Source class to define Source Objects
+    '''
+
+    def __init__(self,id,name,description,url):
+        self.id = id
+        self.name = name
+        self.description = description
+        self.url = url 
+
 class Article:
     '''
     Source class to define Source Objects
@@ -10,3 +21,4 @@ class Article:
         self.article_url = url 
         self.image = image
         self.time = time
+  

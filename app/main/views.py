@@ -1,10 +1,10 @@
 from flask import render_template, request, redirect, url_for
-from app import app
-from app.models import news_sources, news_articles
-from .request import get_sources, get_articles, search_article
+from . import main
+from app.models import Source, Article
+from ..request import get_sources, get_articles, search_article
 
 #views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -20,12 +20,12 @@ def index():
     search_article = request.args.get('article_query')
 
     if search_article:
-        return redirect(url_for('search', article_title = search_article))
+        return redirect(url_for('.search', article_title = search_article))
     else:
         return render_template('index.html', title = title, source = news_sources)
 
 
-@app.route('/<string:id>')
+@main.route('/<string:id>')
 def article(id):
 
     '''
@@ -40,7 +40,7 @@ def article(id):
 
     return render_template('articles.html', articles = news_articles, source = id)
 
-@app.route('/search/<article_title>')
+@main.route('/search/<article_title>')
 def search(article_title):
 
     '''
