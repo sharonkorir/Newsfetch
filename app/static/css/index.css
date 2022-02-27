@@ -1,0 +1,42 @@
+.card {
+  border: 1px solid #a8dadc;
+  background-color: #f1faee;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.card-body{
+  vertical-align: bottom;
+  min-height: 100px;
+}
+
+.card-header{
+  background-color: #a8dadc;
+  padding: 0px;
+}
+
+.navbar{
+  background-color: #e63946;
+  height: 80px;
+}
+
+.navbar-header{
+  vertical-align: middle;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 1200px){
+  .card-body{
+    min-height: 190px;
+    max-height: 220px;
+  }
+}
+@media only screen and (max-width: 600px){
+  .card-body{
+    min-height: 200px;
+  }
+}
+@media only screen and (max-width: 425px){
+/*Small smartphones [325px -> 425px]*/
+}

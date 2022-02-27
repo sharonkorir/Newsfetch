@@ -57,7 +57,7 @@ def process_results(source_list):
     return source_results
 
 def get_articles(id):
-    get_articles_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id, api_key)
+    get_articles_url = article_url.format(id, api_key)
     with urllib.request.urlopen(get_articles_url) as url:
         article_data = url.read()
         article_data_response = json.loads(article_data)
@@ -81,17 +81,16 @@ def process_articles_results(article_list):
         description = article_item.get('description')
         url = article_item.get('url')
         time = article_item.get('publishedAt')
-        id = article_item.get('source.id')
         source = article_item.get('source.name')
 
         article_object = Article(source, title, description, url, image, time)
         article_results.append(article_object)
-        print("test article", article_object.title)
+        print("test article", article_object.description)
 
     #print("test", article_item)
     return article_results
 
-def get_article_details(id):
+#def get_article_details(id):
     get_article_details_url = 'https://newsapi.org/v2/top-headlines?sources={}&pageSize=10&apiKey={}'.format(id, api_key)
     with urllib.request.urlopen(get_article_details_url) as url:
         article_data = url.read()
@@ -100,13 +99,14 @@ def get_article_details(id):
         article_object = None
 
         if article_data_response:
+            source = article_data_response.get('source')
             title = article_data_response.get('title')
             image = article_data_response.get('urlToImage')
             description = article_data_response.get('description')
             article_url = article_data_response.get('url')
             time = article_data_response.get('publishedAt')
 
-        article_object = Article(title, description, article_url, image, time)
-        print("test article", article_object.title)
+        article_object = Article(source, title, description, article_url, image, time)
+        print("test article", article_object.description)
             
     return article_object

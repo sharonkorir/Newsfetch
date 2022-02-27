@@ -1,13 +1,11 @@
-
 {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
 
 {% block content %}
-
+<h3>Trending articles</h3>
   <!-- Article details section -->
-  <h3> Trending headlines for {{source}} </h3>
   <ul>
-      {{ macro.displaySourceList(articles)}}
+      {{ macro.displayArticleList(articles)}}
   </ul>
 
 {% endblock %}

@@ -10,9 +10,12 @@
 {% block content %}
 
   <!-- News sources section -->
-  <h3> Browse News Sources </h3>
-  <ul>
-      {{ macro.displaySourceList(source)}}
-  </ul>
-
+  <div class="container-fluid">
+    <h3> Browse News Sources </h3>
+    <div class="row">
+    <ul>
+        {{ macro.displaySourceList(source)}}
+    </ul>
+    </div>
+  </div>
 {% endblock %}
