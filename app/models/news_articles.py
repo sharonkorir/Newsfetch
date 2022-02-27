@@ -7,6 +7,6 @@ class Article:
         self.source_id = source_id
         self.title = title
         self.description = description
-        self.artcle_url = url 
+        self.article_url = url 
         self.image = image
         self.time = time

@@ -1,7 +1,7 @@
 from flask import render_template
 from app import app
 from app.models import news_sources, news_articles
-from .request import get_sources, get_articles
+from .request import get_article_details, get_sources, get_articles
 
 #views
 @app.route('/')
@@ -28,8 +28,24 @@ def article(id):
     '''
     news_articles = get_articles(id)
     id = id
+    details = get_article_details(id)
+
     #title = f'{news_articles.title}'
-    print("testing", id)
+    print("testing", details.title)
   
 
-    return render_template('sources.html', article = news_articles, source = id)
+    return render_template('articles.html', article = news_articles, source = id, details = details)
+
+#@app.route('/<string:id>/articles')
+#def article(id):
+
+    '''
+    View article details page function that returns article details
+    '''
+    news_articles = get_article_details(id)
+    id = id
+    #title = f'{news_articles.title}'
+    print("testing article objects", id)
+  
+
+    return render_template('articles.html', article = news_articles, source = id)
