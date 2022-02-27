@@ -2,6 +2,11 @@
 
     {% for source in source_list %}
         <li>{{ source.name}}</li>
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
+          <li class="text-center">
+              <a href="/articles/{{source.id}}">{{source.name}}</a>
+          </li>
+      </div>
     {% endfor %}
 
 {% endmacro %}
