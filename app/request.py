@@ -57,7 +57,7 @@ def process_results(source_list):
     return source_results
 
 def get_articles(id):
-    get_articles_url = 'https://newsapi.org/v2/top-headlines?sources={}&pageSize=10&apiKey={}'.format(id, api_key)
+    get_articles_url = article_url.format(id, api_key)
     with urllib.request.urlopen(get_articles_url) as url:
         article_data = url.read()
         article_data_response = json.loads(article_data)

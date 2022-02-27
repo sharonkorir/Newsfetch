@@ -20,11 +20,11 @@ def index():
     return render_template('index.html', title = title, source = news_sources)
 
 
-@app.route('/articles/<string:id>')
+@app.route('/<string:id>')
 def article(id):
 
     '''
-    View movie page function that returns the movie details page and its data
+    View articles page function that returns a list of articles from the news source
     '''
     news_articles = get_articles(id)
     id = id
@@ -32,4 +32,4 @@ def article(id):
     print("testing", id)
   
 
-    return render_template('articles.html', article = news_articles, source = id)
+    return render_template('sources.html', article = news_articles, source = id)
