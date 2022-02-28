@@ -22,11 +22,11 @@
 {% macro displayArticleList(article_list) %}
 
   {% for articles in article_list %}
-      <div class="col-md-6 px-0">
+      <div class="col-md-4 px-0">
         <div class="card-article">
           <img src="{{articles.image}}" class="img-responsive" alt="{{articles.title}} image">
           <div class="card-body">
-            <h4 class="card-title">{{articles.title|upper}}</h4>
+            <h4 class="card-title" style="font-weight: 600;">{{articles.title}}</h4>
             <p class="card-text">{{articles.description}}</p>
             <div class="card-footer">
                 <a href="{{articles.article_url}}" class="btn btn-primary">Go to article</a>

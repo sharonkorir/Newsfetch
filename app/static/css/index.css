@@ -6,6 +6,15 @@
   font-size: 16px;
 }
 
+.card-article {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #e6eaeb;
+  font-size: 16px;
+  min-height: 550px;
+}
+
 .card-body{
   vertical-align: bottom;
   min-height: 100px;
