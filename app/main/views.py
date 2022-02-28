@@ -13,11 +13,12 @@ def index():
 
     #get news sources
     news_sources = get_sources()
-    
 
     title = 'Newsfetch - All your news in one place'
 
     search_article = request.args.get('article_query')
+
+    #trending = trending_articles()
 
     if search_article:
         return redirect(url_for('.search', article_title = search_article))
@@ -38,7 +39,7 @@ def article(id):
     #title = f'{news_articles.title}'
   
 
-    return render_template('articles.html', articles = news_articles, source = id)
+    return render_template('articles.html', article_list = news_articles, source = id)
 
 @main.route('/search/<article_title>')
 def search(article_title):

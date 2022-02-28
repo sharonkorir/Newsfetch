@@ -55,23 +55,25 @@ def process_results(source_list):
         source_object = Source(id, name, description, url)
         source_results.append(source_object)
 
-    
     return source_results
 
 def get_articles(id):
+    '''
+    Function that gets the json response to the url request
+    '''
     get_articles_url = article_url.format(id, api_key)
+
     with urllib.request.urlopen(get_articles_url) as url:
         article_data = url.read()
         article_data_response = json.loads(article_data)
 
-        article_results = None
+        article_results = []
 
         if article_data_response['articles']:
             article_list = article_data_response['articles']
             article_results = process_articles_results(article_list)
-        
-        print("test", article_results, id)
-        return article_results
+
+    return article_results
 
 def process_articles_results(article_list):
     
@@ -83,17 +85,18 @@ def process_articles_results(article_list):
         description = article_item.get('description')
         url = article_item.get('url')
         time = article_item.get('publishedAt')
-        source = article_item.get('source.name')
+        id = article_item.get('source.id')
 
-        article_object = Article(source, title, description, url, image, time)
-        article_results.append(article_object)
+        if image:
+            article_object = Article(id, title, description, url, image, time)
+            article_results.append(article_object)
         print("test article", article_object.description)
 
-    #print("test", article_item)
     return article_results
 
 def search_article(article_title):
     search_article_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(article_title, api_key)
+
     with urllib.request.urlopen(search_article_url) as url:
         article_data = url.read()
         article_data_response = json.loads(article_data)
@@ -101,7 +104,28 @@ def search_article(article_title):
         search_article_results = None
 
         if article_data_response['articles']:
-            search_article_list = article_data_response['articles']
-            search_article_results = process_articles_results(search_article_list)
+            article_list = article_data_response['articles']
+            search_article_results = process_articles_results(article_list)
             
     return search_article_results
+
+#https://newsapi.org/v2/top-headlines?&category={}&apiKey={}
+#https://newsapi.org/v2/top-headlines?&category=business&apiKey=f23e351c7a614044b70f93bf63d434de
+
+#def get_trending_articles(category):
+    '''
+    Return trending articles in category general
+    '''
+    article_url = 'https://newsapi.org/v2/top-headlines?&category={}&apiKey={}'.format(category, api_key)
+
+    with urllib.request.urlopen(article_url) as url:
+        article_data = url.read()
+        article_data_response = json.loads(article_data)
+
+        article_results = None
+
+        if article_data_response['articles']:
+            article_list = article_data_response['articles']
+            trending_article_results = process_articles_results(article_list)
+            
+    return trending_article_results

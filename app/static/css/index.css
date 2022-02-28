@@ -1,9 +1,9 @@
 .card {
-  border: 1px solid #a8dadc;
-  background-color: #f1faee;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 10px;
+  background-color: #e6eaeb;
+  font-size: 16px;
 }
 
 .card-body{
@@ -12,13 +12,13 @@
 }
 
 .card-header{
-  background-color: #a8dadc;
+  color: #003049;
   padding: 0px;
 }
 
 .navbar{
   background-color: #e63946;
-  height: 80px;
+  margin-bottom: 0px;
 }
 
 .navbar-header{
@@ -26,9 +26,34 @@
   padding: 10px;
 }
 
+.header{
+  background-image: url(../images/header.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+  padding: 10px;
+}
+
+.header-text{
+  text-align: center;
+  color: #003049;
+  position: relative;
+  vertical-align: middle;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.source{
+  padding-top: 20px;
+}
+
+.btn-primary{
+background-color: #f77f00;
+}
+
 @media only screen and (max-width: 1200px){
   .card-body{
-    min-height: 190px;
+    min-height: 220px;
     max-height: 220px;
   }
 }
