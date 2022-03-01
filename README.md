@@ -32,6 +32,8 @@ Alternatively, you can launch the application on your browser using the live lin
 
 ## Live link
 
+https://fetch-news-api.herokuapp.com/
+
 ## Technologies used
 
 * Python 3.8.10
